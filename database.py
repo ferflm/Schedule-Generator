@@ -76,7 +76,7 @@ def getAllSubjects():
                 'id': option_id,
                 'professor': professor_name,
                 'group': group_name,
-                'days': days.split(', '),  # Convertir los días en lista
+                'days': days.split(', '),  # Convertir los días en lista separando por coma
                 'time': time,
                 'preference': preference
             })
