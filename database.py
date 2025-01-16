@@ -45,17 +45,51 @@ conn.commit()
 conn.close()
 
 # Función para obtener todas las materias
-def get_all_subjects():
-    conn = sqlite3.connect("school_schedule.db")
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM subjects")
-    subjects = cursor.fetchall()
-    conn.close()
-    return subjects
+def getAllSubjects():
+    try:
+        conn = sqlite3.connect("schedule.db")
+        cursor = conn.cursor()
+
+        # Obtener todas las materias junto con sus opciones de horarios
+        cursor.execute("""
+        SELECT s.id, s.name, o.id, o.professor_name, o.group_name, o.days, o.time, o.preference
+        FROM subjects s
+        LEFT JOIN options o ON s.id = o.subject_id
+        """)
+
+        subjects = cursor.fetchall()
+        conn.close()
+
+        # Organizar los resultados en una estructura más fácil de manejar
+        subjects_dict = {}
+
+        for subject_id, subject_name, option_id, professor_name, group_name, days, time, preference in subjects:
+            # Si la materia no existe en el diccionario, la agregamos
+            if subject_id not in subjects_dict:
+                subjects_dict[subject_id] = {
+                    'name': subject_name,
+                    'options': []
+                }
+
+            # Agregar la opción de horario a la materia correspondiente
+            subjects_dict[subject_id]['options'].append({
+                'id': option_id,
+                'professor': professor_name,
+                'group': group_name,
+                'days': days.split(', '),  # Convertir los días en lista
+                'time': time,
+                'preference': preference
+            })
+
+        # Devolver las materias con sus opciones en formato de lista
+        return list(subjects_dict.values())
+    except sqlite3.Error as e:
+        print(f"Error connecting to database: {e}")
+        return []
 
 # Función para obtener todas las opciones de una materia específica
-def get_options_by_subject(subject_id):
-    conn = sqlite3.connect("school_schedule.db")
+def getOptionsBySubject(subject_id):
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM options WHERE subject_id = ?", (subject_id,))
     options = cursor.fetchall()
@@ -63,16 +97,16 @@ def get_options_by_subject(subject_id):
     return options
 
 # Función para agregar una nueva materia
-def add_subject(name):
-    conn = sqlite3.connect("school_schedule.db")
+def addSubject(name):
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute("INSERT INTO subjects (name) VALUES (?)", (name,))
     conn.commit()
     conn.close()
 
 # Función para agregar una nueva opción de materia
-def add_option(subject_id, professor_name, group, days, time, preference):
-    conn = sqlite3.connect("school_schedule.db")
+def addOption(subject_id, professor_name, group, days, time, preference):
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute('''
     INSERT INTO options (subject_id, professor_name, "group", days, time, preference)
@@ -82,16 +116,16 @@ def add_option(subject_id, professor_name, group, days, time, preference):
     conn.close()
 
 # Función para eliminar una opción de materia
-def delete_option(option_id):
-    conn = sqlite3.connect("school_schedule.db")
+def deleteOption(option_id):
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute("DELETE FROM options WHERE id = ?", (option_id,))
     conn.commit()
     conn.close()
 
 # Función para actualizar la preferencia de una opción
-def update_preference(option_id, new_preference):
-    conn = sqlite3.connect("school_schedule.db")
+def updatePreference(option_id, new_preference):
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute('''
     UPDATE options
@@ -102,8 +136,8 @@ def update_preference(option_id, new_preference):
     conn.close()
 
 # Función para obtener todos los horarios generados
-def get_all_schedules():
-    conn = sqlite3.connect("school_schedule.db")
+def getAllSchedules():
+    conn = sqlite3.connect("schedule.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM schedules")
     schedules = cursor.fetchall()
