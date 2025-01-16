@@ -1,46 +1,29 @@
 from database import getAllSubjects
+from datetime import datetime
 
-def isValid(currSchedule, new_option):
-    """
-    Verifica si la opción de horario es válida en el horario actual.
-
-    Args:
-        currSchedule (list): Horario parcial con las opciones ya elegidas.
-        new_option (dict): La nueva opción que queremos agregar.
-
-    Returns:
-        bool: True si es válida, False si se solapan.
-    """
-    for option in currSchedule:
-        # Comprobar si los días de la nueva opción se solapan con las ya elegidas
-        if any(day in option['days'] for day in new_option['days']):
-            # Verificar si las horas se solapan (esto es solo un ejemplo, ajusta según el formato)
-            if isTimeConflict(option['time'], new_option['time']):
-                return False
+def isValid(currSchedule, option):
+    for scheduled_option in currSchedule:
+        if isConflicting(scheduled_option, option):
+            return False
     return True
 
-def isTimeConflict(time1, time2):
-    """
-    Verifica si dos horarios se solapan.
-
-    Args:
-        time1 (str): El primer horario en formato "HH:MM - HH:MM".
-        time2 (str): El segundo horario en formato "HH:MM - HH:MM".
-
-    Returns:
-        bool: True si se solapan, False si no.
-    """
-    # Este es un ejemplo básico. Necesitarás un manejo más preciso de los tiempos.
-    start1, end1 = time1.split(' - ')
-    start2, end2 = time2.split(' - ')
+def isConflicting(option1, option2):
+     # Comparar los días
+    common_days = set(option1['days']).intersection(option2['days'])
+    if not common_days:
+        return False
     
-    # Convertir a formato de 24 horas para comparación (si es necesario)
-    start1 = int(start1.replace(':', ''))
-    end1 = int(end1.replace(':', ''))
-    start2 = int(start2.replace(':', ''))
-    end2 = int(end2.replace(':', ''))
+    # Convertir las horas a objetos datetime para compararlas
+    time1_start = datetime.strptime(option1['time'].split(' - ')[0], "%H:%M")
+    time1_end = datetime.strptime(option1['time'].split(' - ')[1], "%H:%M")
+    time2_start = datetime.strptime(option2['time'].split(' - ')[0], "%H:%M")
+    time2_end = datetime.strptime(option2['time'].split(' - ')[1], "%H:%M")
     
-    return not (end1 <= start2 or end2 <= start1)
+    # Verificar si hay solapamiento
+    if time1_start < time2_end and time2_start < time1_end:
+        return True  # Hay un solapamiento
+    
+    return False
 
 
 def generateSchedules(subjects, currSchedule = [], allSchedules = []):
