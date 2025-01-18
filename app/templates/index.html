@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Schedule Generator</h1>
+    
+    <section>
+        <h2>Add Subject</h2>
+        <div>
+            <form id="subjectForm">
+                <input type="text" placeholder="Subject Name" required>
+                <button type="submit">Add Subject</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <h2>Add options</h2>
+        <div>
+            <form id="optionsForm">
+                <select id="subjectSelect"></select>
+                <input type="text" id="professor" placeholder="Professor Name" required>
+                <input type="text" id="groupName" placeholder="Group" required>
+                
+                <h3>Days:</h3>
+                <table id="tblDays">
+                    <tr>
+                        <td data-day="Monday">Monday</td>
+                        <td data-day="Tuesday">Tuesday</td>
+                        <td data-day="Wednesday">Wednesday</td>
+                        <td data-day="Thursday">Thursday</td>
+                        <td data-day="Friday">Friday</td>
+                        <td data-day="Saturday">Saturday</td>
+                    </tr>
+                </table>
+
+                <h3>Hours:</h3>
+                <label for="startTime">Starts:</label>
+                <input type="time" id="startTime" required>
+                <label for="endTime">Ends:</label>
+                <input type="time" id="endTime" required>
+                <input type="number" id="preference" placeholder="Preference" min="1" max="5">
+                <button type="submit">Add Option</button>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
