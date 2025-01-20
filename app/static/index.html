@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/script.js"></script>
+</head>
+<body style="background-color: #1A1A1D;">
+    <div class="center">
+        <h1>Schedule Generator</h1>
+    </div>
+    <section id="subjectSect">
+        <h2>Add Subject</h2>
+        <div class="subjectDiv">
+            <form id="subjectForm">
+                <input type="text" placeholder="Subject Name" required>
+                <br>
+                <button type="submit" class="button-50" role="button">Add Subject</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="optionsSect">
+        <h2>Add options</h2>
+        <div id="optionsDiv">
+            <form class="optionsForm">
+                <div id="align">
+                    <select id="subjectSelect"></select>
+                    <input type="text" id="professor" placeholder="Professor Name" required>
+                    <input type="text" id="groupName" placeholder="Group" required>
+                </div>
+
+                <h3>Days:</h3>
+                <table id="tblDays">
+                    <tr>
+                        <td data-day="Monday">Monday</td>
+                        <td data-day="Tuesday">Tuesday</td>
+                        <td data-day="Wednesday">Wednesday</td>
+                        <td data-day="Thursday">Thursday</td>
+                        <td data-day="Friday">Friday</td>
+                        <td data-day="Saturday">Saturday</td>
+                    </tr>
+                </table>
+
+                <h3>Hours:</h3>
+                <div class="align">
+                    <label for="startTime">Starts:</label>
+                    <input type="time" id="startTime" required>
+                    <label for="endTime">Ends:</label>
+                    <input type="time" id="endTime" required>
+                    <label for="preference">Preference:</label>
+                    <input type="number" id="preference" placeholder="0-5" min="1" max="5">
+                </div>
+                <br>
+                <div class="align">
+                    <button type="submit" class="button-50" role="button">Add Option</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    
+    <div class="center">
+        <h2>Subjects</h2>
+    </div>
+    
+    <section>    
+        <div id="subjectsContainer">
+            <table id="subjectsTbl">
+                <tr>
+                    <td>Subjects</td>
+                    <td>Options</td>
+                    <td>Delete</td>
+                </tr>
+            </table>
+        </div>
+        <div class="center">
+            <button type="submit" id="generateSchedulesButton" class="button-50" role="button">Generate Shcedules</button>
+        </div>
+    </section>
+</body>
+</html>

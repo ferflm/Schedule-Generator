@@ -1,0 +1,198 @@
+body {
+    font-family: monospace;
+    margin: 0;
+    color: #f9f9f9;
+}
+
+input {
+    font-family: monospace;
+}
+
+input[type=number] {
+    width: 40px;
+}
+
+input[type=select] {
+    width: 80px;
+}
+
+/* CSS */
+.button-50 {
+  appearance: button;
+  background-color: #1A1A1D;
+  background-image: none;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: ITCAvantGardeStd-Bk,Arial,sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+  text-transform: none;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+}
+
+.button-50:hover {
+  text-decoration: none;
+}
+
+.button-50:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, #000 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-50 {
+    padding: 5px 25px;
+  }
+}
+
+#subjectSect {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#subjectDiv {
+    display: flex;
+    padding: 0 10px;
+}
+
+#tblDays {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 10px 0;
+}
+
+#tblDays td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+#tblDays td.selected {
+    background-color: #737373;
+    color: white;
+    font-weight: bold;
+}
+
+.subject-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subject-card h3 {
+    margin: 0 0 10px;
+}
+
+.subject-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.subject-card ul li {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+
+.subject-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #f9f9f9;
+}
+
+.subject-card h3 {
+    margin: 0 0 8px 0;
+}
+
+.subject-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.subject-card li {
+    margin-bottom: 8px;
+}
+
+#optionsSect {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#optionsDiv {
+    display: flex;
+    padding: 0 10px;
+}
+
+.align {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+#subjectForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#optionsForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#subjectsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#shcedulesContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
