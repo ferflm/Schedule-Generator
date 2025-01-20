@@ -2,7 +2,7 @@ from flask import Flask
 from app.api.routes import apiBlueprint
 
 def createApp():
-    app = Flask(__name__, static_folder="app/static")
+    app = Flask(__name__, static_folder="../app/static")
     app.register_blueprint(apiBlueprint)
 
     # Configurar la carpeta estática para servir archivos como index.html
