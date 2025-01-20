@@ -41,7 +41,7 @@ def deleteOption(option_id):
 # Ruta para servir index.html
 @apiBlueprint.route("/")
 def serveIndex():
-    return send_from_directory("C:/Users/ferfl/Documents/schedule/app/static", "index.html")
+    return send_from_directory("../app/static", "index.html")
 
 # Endpoint para crear una sesión
 @apiBlueprint.route("/api/session", methods=["POST"])
